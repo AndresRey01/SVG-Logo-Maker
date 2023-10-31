@@ -1,6 +1,6 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
-const { Triangle, Square, Circle } = require(".lib/shapes.js")
+const { Triangle, Square, Circle } = require("./lib/shapes")
 
 class Svg{
     constructor(){
@@ -47,7 +47,7 @@ const questions = [
 
 function writeToFile(fileName, data) {
 	console.log("Writing [" + data + "] to file [" + fileName + "]")
-    filesystem.writeFile(fileName, data, function (err) {
+    fs.writeFile(fileName, data, function (err) {
         if (err) {
             return console.log(err);
         }
@@ -108,5 +108,5 @@ async function init() {
     console.log("Shape generation complete!");
 	console.log("Writing shape to file...");
 	writeToFile(svg_file, svgString); 
-}
+};
 init()
