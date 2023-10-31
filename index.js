@@ -43,6 +43,12 @@ const questions = [
         message: "Choose which Pixel Image you would like?",
         choices: ["Circle", "Square", "Triangle"],
     },
+    {
+        type: "input",
+        name: "file-name",
+        message: "Enter the name of the SVG file (e.g., logo.svg):",
+        default: "logo.svg", // You can set a default file name if needed
+    },
 ];
 
 function writeToFile(fileName, data) {
@@ -58,7 +64,6 @@ function writeToFile(fileName, data) {
 async function init() {
     console.log("Starting init");
 	var svgString = "";
-	var svg_file = "logo.svg";
 
     const answers = await inquirer.prompt(questions);
 
@@ -107,6 +112,9 @@ async function init() {
 
     console.log("Shape generation complete!");
 	console.log("Writing shape to file...");
+
+    var svg_file = "examples/" + answers["file-name"];
+    
 	writeToFile(svg_file, svgString); 
 };
 init()
